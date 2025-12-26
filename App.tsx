@@ -36,7 +36,8 @@ const App: React.FC = () => {
     return saved ? JSON.parse(saved) : INITIAL_SHOP_INFO;
   });
   const [theme, setTheme] = useState<ThemeMode>(() => (localStorage.getItem('apexel_theme') as ThemeMode) || 'light');
-  const [password, setPassword] = useState(() => localStorage.getItem('apexel_pass') || 'apexel_admin');
+  // Default password set to 1111 as requested
+  const [password, setPassword] = useState(() => localStorage.getItem('apexel_pass') || '1111');
   
   // UI State
   const [selectedTxIds, setSelectedTxIds] = useState<Set<string>>(new Set());
@@ -334,7 +335,6 @@ const App: React.FC = () => {
               </div>
             </header>
             <div className="space-y-10">
-              {/* Fix: Explicitly type the parameters of the map callback to [string, TransactionGroup] to prevent 'unknown' type errors */}
               {Object.entries(groupedTransactions).sort(([a],[b])=>b.localeCompare(a)).map(([key, group]: [string, TransactionGroup]) => (
                 <div key={key} className="space-y-4">
                   <div className="flex justify-between items-center px-4">
@@ -613,29 +613,30 @@ const App: React.FC = () => {
       <div className="max-w-md w-full z-10 animate-fadeIn">
         <div className="text-center mb-10">
           <div className="text-6xl mb-6">💎</div>
-          <h1 className="text-4xl font-black text-white tracking-tighter uppercase mb-2">APEXEL POS</h1>
+          <h1 className="text-5xl font-black text-white tracking-tighter uppercase mb-2">OmniStock</h1>
           <p className="text-slate-400 font-bold tracking-[0.3em] text-[10px] uppercase">Financial Integrity Platform</p>
         </div>
         <form onSubmit={e => {
           e.preventDefault();
           const fd = new FormData(e.currentTarget);
-          if (fd.get('email') === 'russell@apexel.zm' && fd.get('password') === password) {
+          // Hardcoded 1111/1111 check as requested
+          if (fd.get('identity') === '1111' && fd.get('password') === password) {
             setIsLoggedIn(true);
             setLoginError(null);
             addToast('Access Authorized', 'success');
           } else {
-            setLoginError('Invalid Administrator Passkey');
+            setLoginError('Invalid Passkey');
             addToast('Login Failed', 'error');
           }
         }} className="bg-white p-12 rounded-[4rem] shadow-2xl space-y-8 border border-white/10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full -mr-12 -mt-12"></div>
           <div className="space-y-3">
             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Identity</label>
-            <input type="email" name="email" required defaultValue="russell@apexel.zm" className="w-full px-6 py-5 rounded-2xl bg-slate-50 border-none outline-none font-bold text-slate-700" />
+            <input type="text" name="identity" required placeholder="1111" defaultValue="1111" className="w-full px-6 py-5 rounded-2xl bg-slate-50 border-none outline-none font-bold text-slate-700" />
           </div>
           <div className="space-y-3">
             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Secure Passkey</label>
-            <input type="password" name="password" required className="w-full px-6 py-5 rounded-2xl bg-slate-50 border-none outline-none font-bold text-slate-700" />
+            <input type="password" name="password" required placeholder="••••" defaultValue="1111" className="w-full px-6 py-5 rounded-2xl bg-slate-50 border-none outline-none font-bold text-slate-700" />
           </div>
           {loginError && <p className="text-red-500 text-[10px] font-black uppercase text-center animate-pulse">{loginError}</p>}
           <button type="submit" className="w-full py-6 bg-emerald-600 text-white rounded-[2.5rem] font-black text-lg hover:bg-emerald-700 shadow-2xl transition-all uppercase tracking-widest">Enter Dashboard</button>

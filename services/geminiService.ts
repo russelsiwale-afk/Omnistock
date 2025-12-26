@@ -3,7 +3,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { Product, ShopInfo } from "../types";
 
 // Always use the required initialization pattern
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || 'FAKE_API_KEY_FOR_DEVELOPMENT' });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getAIInventoryAnalysis = async (products: Product[], shop: ShopInfo) => {
   const prompt = `

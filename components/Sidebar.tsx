@@ -24,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout, th
   return (
     <div className={`w-64 ${bgColor} text-white min-h-screen p-6 hidden md:block fixed left-0 top-0 z-50 shadow-2xl border-r flex flex-col`}>
       <div className="mb-10">
-        <h1 className="text-xl font-black tracking-tighter text-emerald-400">APEXEL ENTERPRISE</h1>
+        <h1 className="text-2xl font-black tracking-tighter text-emerald-400 uppercase">OmniStock</h1>
         <p className="text-[10px] text-emerald-200/60 font-bold uppercase tracking-[0.3em]">Accounting Suite</p>
       </div>
       
@@ -56,10 +56,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout, th
         </button>
 
         <div className="p-4 bg-black/20 rounded-xl border border-white/5">
-          <p className="text-[9px] text-emerald-400/50 mb-1 font-black uppercase tracking-widest text-center">Identity Verified</p>
+          <p className="text-[9px] text-emerald-400/50 mb-1 font-black uppercase tracking-widest text-center">Security Tier 1</p>
           <div className="flex items-center justify-center space-x-2">
             <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
-            <span className="text-[10px] text-emerald-50 font-black tracking-wider text-center">RUSSELL SIWALE</span>
+            <span className="text-[10px] text-emerald-50 font-black tracking-wider text-center uppercase">System Active</span>
           </div>
         </div>
       </div>
