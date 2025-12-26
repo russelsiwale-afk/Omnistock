@@ -1,0 +1,7 @@
+{
+  "name": "OmniStock - Zambian Business Accountant",
+  "description": "A comprehensive inventory and accounting management platform for Zambian businesses, featuring stock tracking, barcode scanning, and AI-driven business insights.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
